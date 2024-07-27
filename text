@@ -1,0 +1,44 @@
+MARYNA SHUT
+
+
+How would the following MongoDB document be represented in SQL? (Select all that apply.)
+
+{
+    “first_name”: “Yae”,
+    “last_name”: “Ji”,
+    “age”: “30”,
+    “birthplace”: “USA”
+}
+Copilot
+Certainly! Let’s explore how the given MongoDB document would be represented in SQL:
+
+Table Representation:
+In SQL, each row within a table corresponds to a BSON document in MongoDB. BSON stands for Binary JSON and serves as a storage format1.
+We can create a table named users with columns corresponding to the fields in the MongoDB document:
+SQL
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    age INT,
+    birthplace VARCHAR(255)
+);
+
+The user_id column serves as the primary key.
+Inserting Data:
+To insert the data from the MongoDB document, we’d use an INSERT INTO statement:
+SQL
+
+INSERT INTO users (user_id, first_name, last_name, age, birthplace)
+VALUES (1, 'Yae', 'Ji', 30, 'USA');
+
+Querying Data:
+To retrieve the user with the first name “Yae,” we’d use a SELECT statement:
+SQL
+
+SELECT * FROM users WHERE first_name = 'Yae';
+
+Additional Considerations:
+In MongoDB, documents can store nested arrays and objects. If your data includes more complex structures, you might need additional tables or a different schema design.
+Remember that MongoDB does not rely on SQL; instead, it employs JavaScript as the primary language for document manipulation, which facilitates interaction with the database using a familiar syntax2. However, when translating to SQL, we follow the relational model conventions. Feel free to ask if you have any further questions! 😊🔍📊

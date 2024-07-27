@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <style>
+        .navbar {
+            background-color: aliceblue;
+            color: black; /* Ensure text color is visible */
+            padding: 1rem 2rem;
+            position: fixed; /* Fix navbar to the top */
+            width: 100%; /* Full width */
+            top: 0;
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li {
+            margin-right: 1rem;
+            padding:20px;
+        }
+        .nav-links a {
+            color: black; /* Changed to black for better visibility */
+            text-decoration: none;
+        }
+        .content {
+            margin-top: 70px; /* Add margin to avoid overlap with navbar */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+              <!-- ok francis tandaan mo lagi mo gamitin yung url if gusto mo i link yung item -->
+            <li><a href='{% url 'dog_views' %}'>Homepage</a></li>
+            <li><a href=''>About</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        <!-- Main content goes here -->
+        {% endblock %}
+    </div>
+</body>
+</html>
+

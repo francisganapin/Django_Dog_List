@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F8B195;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .dog-breed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top:100px;
+        }
+        .card {
+            background-color: #F8B195;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.2s;
+            width: 100%;
+            max-width: 200px;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .dog-image {
+            width: 50%;
+            height: auto;
+            border-bottom: 1px solid #F8B195;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+
+<body>
+    <div class="container">
+        {% for item in dogs %}
+        <div class="dog-breed">
+            <div class="card">
+                <a href="{% url 'dog_detail' breed_name=item.Breed %}">
+                    <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image">
+                    <h3>{{ item.Breed }}</h3>
+                </a>
+            </div>
+        </div>
+        {% empty %}
+            <p>No dogs found.</p>
+        {% endfor %}
+    </div>
+</body>
+
+{%endblock%}

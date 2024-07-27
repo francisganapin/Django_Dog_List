@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+
+
+    <title>{{ dog.Breed }} Information</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F8B195;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Ensure full viewport height */
+        }
+        .dog-info {
+            background-color: #F8B195;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 600px; /* Limit width for readability */
+        }
+        .dog-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+    </style>
+
+
+    <div class="dog-info">
+        <h1>{{ dog.Breed }}</h1>
+        <p><strong>Country of Origin:</strong> {{ dog.Country_of_Origin }}</p>
+        <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
+        <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
+        <p><strong>Color of Eyes:</strong> {{ dog.Color_of_Eyes }}</p>
+        <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
+        <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
+        <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
+        <img class="dog-image" src="{{ dog.image.url }}" alt="{{ dog.Breed }} image">
+    </div>
+
+
+{%endblock%}
