@@ -1,0 +1,21 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}Classes{% endblock %}
+
+{% block content %}
+
+<div class="dog-info">
+    <h1>{{ dog.Breed }}</h1>
+    <p><strong>Country of Origin:</strong> {{ dog.Country_of_Origin }}</p>
+    <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
+    <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
+    <p><strong>Color of Eyes:</strong> {{ dog.Color_of_Eyes }}</p>
+    <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
+    <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
+    <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
+    <img class="dog-image" src="{{ dog.image.url }}" alt="{{ dog.Breed }} image">
+</div>
+
+{%endblock%}

@@ -40,6 +40,7 @@
               <!-- ok francis tandaan mo lagi mo gamitin yung url if gusto mo i link yung item -->
             <li><a href='{% url 'dog_views' %}'>Homepage</a></li>
             <li><a href=''>About</a></li>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search breed of Dogs">
         </ul>
     </nav>
 
@@ -51,3 +52,25 @@
 </body>
 </html>
 
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, container, cards, h3, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        container = document.getElementsByClassName("container")[0];
+        cards = container.getElementsByClassName('dog-breed');
+        
+        // Loop through all card elements, and hide those who don't match the search query
+        for (i = 0; i < cards.length; i++) {
+            h3 = cards[i].getElementsByTagName("h3")[0];
+            txtValue = h3.textContent || h3.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>

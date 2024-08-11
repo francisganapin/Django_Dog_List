@@ -7,51 +7,65 @@
 
     <title>{{ dog.Breed }} Information</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F8B195;
-            padding: 20px;
+<style>
+        body, html {
+            height: 100%;
+            margin: 0;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            min-height: 100vh; /* Ensure full viewport height */
-        }
-        .dog-info {
+            justify-content: center;
+            align-items: center;
             background-color: #F8B195;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
             padding: 20px;
-            max-width: 600px; /* Limit width for readability */
+            text-align: center;
         }
+
         .dog-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-top: 10px;
+            width: 50%;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
+
+        .card-title {
+            font-size: 1.5em;
+            color: navy;
+            text-transform: uppercase;
+            margin-bottom: 15px;
         }
-        p {
-            font-size: 16px;
+
+        .card-body p {
+            color: #333;
+            font-size: 1em;
+            text-align: left;
             margin: 5px 0;
         }
+
+        .card-body p strong {
+            color: navy;
+        }
     </style>
-
-
-    <div class="dog-info">
-        <h1>{{ dog.Breed }}</h1>
-        <p><strong>Country of Origin:</strong> {{ dog.Country_of_Origin }}</p>
-        <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
-        <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
-        <p><strong>Color of Eyes:</strong> {{ dog.Color_of_Eyes }}</p>
-        <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
-        <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
-        <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
+</head>
+<body>
+    <div class="card">
         <img class="dog-image" src="{{ dog.image.url }}" alt="{{ dog.Breed }} image">
+        <p class="card-title">{{ dog.Breed }}</p>
+        <div class="card-body">
+            <p><strong>Country of Origin:</strong> {{ dog.Country_of_Origin }}</p>
+            <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
+            <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
+            <p><strong>Color of Eyes:</strong> {{ dog.Color_of_Eyes }}</p>
+            <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
+            <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
+            <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
+        </div>
     </div>
-
+</body>
 
 {%endblock%}

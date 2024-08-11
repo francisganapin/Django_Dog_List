@@ -46,12 +46,36 @@
             text-decoration: none;
             color: inherit;
         }
+
+
+        .search-container{
+            position:absolute;
+            top:20px;
+            left:50%;
+            transform:translateX(-50%);
+            display:flex;
+            border:1px solid #ccc;
+            border-radius:5px;
+            overflow:hidden;
+        }
+
+
+
     </style>
+
+
+
+
+</script>
+
+
+
+
 
 <body>
     <div class="container">
         {% for item in dogs %}
-        <div class="dog-breed">
+        <div class="dog-breed" id="data-table">
             <div class="card">
                 <a href="{% url 'dog_detail' breed_name=item.Breed %}">
                     <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image">
@@ -64,5 +88,11 @@
         {% endfor %}
     </div>
 </body>
+
+
+
+
+
+
 
 {%endblock%}

@@ -12,5 +12,3 @@ class Dog(models.Model):
     Character_Traits = models.CharField(max_length=150)
     Common_Health_Problems = models.TextField(max_length=1000)
     image = models.ImageField(upload_to='static/dog_image/',default='static/dog_image/dog_images.png')
-
-
