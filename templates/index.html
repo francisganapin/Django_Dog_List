@@ -25,23 +25,24 @@
             padding-top:100px;
         }
         .card {
-            background-color: #F8B195;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.2s;
-            width: 100%;
-            max-width: 200px;
+            display: grid;
+  place-items: center;
+  width: 80vw;
+  max-width: 21.875rem;
+  height: 28.125rem;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
         }
         .card:hover {
             transform: scale(1.05);
         }
         .dog-image {
-            width: 50%;
-            height: auto;
-            border-bottom: 1px solid #F8B195;
-        }
+  object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+}
+        
         a {
             text-decoration: none;
             color: inherit;
@@ -79,9 +80,10 @@
             <div class="card">
                 <a href="{% url 'dog_detail' breed_name=item.Breed %}">
                     <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image">
-                    <h3>{{ item.Breed }}</h3>
                 </a>
+                <h3>{{ item.Breed }}</h3>
             </div>
+            
         </div>
         {% empty %}
             <p>No dogs found.</p>
