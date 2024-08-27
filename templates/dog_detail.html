@@ -5,69 +5,62 @@
 {% block content %}
 
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ dog.Breed }} Information</title>
-
-<style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #F8B195;
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .color_container {
             font-family: Arial, sans-serif;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .dog-image {
-            width: 50%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .card-title {
-            font-size: 1.5em;
-            color: navy;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .card-body p {
-            color: #333;
-            font-size: 1em;
-            text-align: left;
-            margin: 5px 0;
-        }
-
-        .card-body p strong {
-            color: navy;
+            background-color: #F8B195;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
-<body>
 
-    <div class="card">
-        <img class="dog-image" src="{{ dog.image.url }}" alt="{{ dog.Breed }} image">
-        <p class="card-title">{{ dog.Breed }}</p>
-        <div class="card-body">
-            <p><strong>Country of Origin:</strong> {{ dog.Country_of_Origin }}</p>
-            <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
-            <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
-            <p><strong>Color of Eyes:</strong> {{ dog.Color_of_Eyes }}</p>
-            <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
-            <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
-            <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
+<body class="color_container flex items-center justify-center min-h-screen">
+    <figure class="md:flex bg-white rounded-xl shadow-lg p-8 md:p-0 dark:bg-gray-800 max-w-4xl">
+        <img class="w-32 h-32 md:w-48 md:h-auto md:rounded-l-xl rounded-full mx-auto md:mx-0" src="{{ dog.image.url }}" alt="{{ dog.Breed }}" width="384" height="512">
+        <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
+            <blockquote>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">History</h2>
+                <p class="text-lg font-medium text-gray-600 dark:text-gray-300 mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </blockquote>
+            <figcaption class="font-medium mt-4 space-y-2">
+                <div class="text-sky-500 dark:text-sky-400">
+                    <p><strong>Dog Breed:</strong> {{ dog.Breed }}</p>
+                </div>
+                <div class="text-gray-700 dark:text-gray-400">
+                    <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
+                </div>
+                <div class="text-gray-700 dark:text-gray-400">
+                    <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
+                </div>
+                <div class="text-gray-700 dark:text-gray-400">
+                    <p><strong>Eye Color:</strong> {{ dog.Color_of_Eyes }}</p>
+                </div>
+                <div class="text-gray-700 dark:text-gray-400">
+                    <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
+                </div>
+                <div class="text-gray-700 dark:text-gray-400">
+                    <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
+                </div>
+                <div class="text-gray-700 dark:text-gray-400">
+                    <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
+                </div>
+            </figcaption>
         </div>
-    </div>
+    </figure>
 </body>
+</html>
 
 
 {%endblock%}
