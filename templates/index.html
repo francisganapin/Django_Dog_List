@@ -4,105 +4,100 @@
 
 {% block content %}
 
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-body {
-            font-family: Arial, sans-serif;
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: #F8B195;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
-        }
-        .dog-breed {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top:100px;
+            max-width: 1200px;
+            width: 100%;
         }
         .card {
-  background-color: bisque;
-  display: grid;
-  place-items: center;
-  width: 80vw;
-  max-width: 21.875rem;
-  height: 28.125rem;
-  overflow: hidden;
-  border-radius: 0.625rem;
-  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
-
+            background-color: #FFF3E0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
         .dog-image {
-  width: 200px; /* Set the desired width */
-  height: 300px; /* Set the desired height */
-  object-fit: cover; /* Ensures the image covers the entire area */
-}
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .card button {
+            background-color: #F67280;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .card button:hover {
+            background-color: #C06C84;
+        }
+        .search-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+
         
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-
-        .search-container{
-            position:absolute;
-            top:20px;
-            left:50%;
-            transform:translateX(-50%);
-            display:flex;
-            border:1px solid #ccc;
-            border-radius:5px;
-            overflow:hidden;
-        }
-
-        .box {
-  width: 200px;
-  height: 100px;
-  border: 1px solid black;
-  padding: 10px;
-  margin: 10px;
-}
-
     </style>
-
-
-
-
-</script>
-
-
-
-
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
 <body>
 
     <div class="container">
         {% for item in dogs %}
-        <div class="dog-breed" id="data-table">
-            <div class="card">
-                <a href="{% url 'dog_detail' breed_name=item.Breed %}">
-                    <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image">
-                   
-                </a>
-                <h3>{{ item.Breed }}</h3>
-            </div>
-            
+        <div class="card">
+
+            <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image">
+
+            <a href="{% url 'dog_detail' breed_name=item.Breed %}">
+                <button class="favorite styled" type="button">{{ item.Breed }}</button>
+            </a>
+
         </div>
         {% empty %}
             <p>No dogs found.</p>
         {% endfor %}
     </div>
 </body>
-
-
-
-
+</html>
 
 
 {%endblock%}

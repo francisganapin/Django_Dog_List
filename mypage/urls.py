@@ -8,7 +8,7 @@ from django.conf import settings
 
 urlpatterns =[
     
-    path('dog',dog_views,name='dog_views'),
+    path('',dog_views,name='dog_views'),
     path('about',about_views,name='about_views'),
     path('dog/<str:breed_name>/',views.dog_detail,name='dog_detail'),
 ]

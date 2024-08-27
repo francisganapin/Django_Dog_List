@@ -72,7 +72,53 @@
 </style>
 
 
-<h1>Hello this Webapp is all about dogs list off dogs</h1>
-<h2>I Convert csv into DBSQL Using Python</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ dog.Breed }} Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .color_container {
+            font-family: Arial, sans-serif;
+            background-color: #F8B195;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body class="color_container flex items-center justify-center min-h-screen">
+    <figure class="md:flex bg-white rounded-xl shadow-lg p-8 md:p-0 dark:bg-gray-800 max-w-4xl">
+        <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
+            <blockquote>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">About</h2>
+                <p class="text-lg font-medium text-gray-600 dark:text-gray-300 mt-4">
+                    
+                    This application made in Django application,
+                    there a few list of dog here that you can find.
+
+                </p>
+                <p class="text-lg font-medium text-gray-600 dark:text-gray-300 mt-4">
+                    
+                    This application made in Django application,
+                    there a few list of dog here that you can find.
+
+                </p>
+            </blockquote>
+
+            <figcaption class="font-medium mt-4 space-y-2">
+
+                <div class="text-sky-500 dark:text-sky-400">
+                    <p><strong>Technology we use:</strong> Django,Sql,Python</p>
+                </div>
+       
+      
+            </figcaption>
+        </div>
+    </figure>
+</body>
+</html>
 
 {%endblock%}
