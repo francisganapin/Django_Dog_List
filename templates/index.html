@@ -80,24 +80,47 @@
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-
     <div class="container">
-        {% for item in dogs %}
+        <!-- Dog Cards -->
+        {% for item in page_obj %}
         <div class="card">
-
-            <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image">
-
+            <!-- Dog Image -->
+            <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image" onerror="this.src='/static/images/default-dog.jpg'">
+            
+            <!-- Breed Button Linking to Details -->
             <a href="{% url 'dog_detail' breed_name=item.Breed %}">
                 <button class="favorite styled" type="button">{{ item.Breed }}</button>
             </a>
-
         </div>
         {% empty %}
             <p>No dogs found.</p>
         {% endfor %}
     </div>
+
+    <!-- Pagination Links -->
+    <div class="pagination">
+        <span class="step-links">
+            <!-- Previous Link -->
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <!-- Current Page Indicator -->
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            <!-- Next Link -->
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
+    </div>
 </body>
+
 </html>
+
+
 
 
 {%endblock%}

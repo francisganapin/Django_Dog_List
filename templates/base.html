@@ -56,16 +56,16 @@
 <script>
     function myFunction() {
         // Declare variables
-        var input, filter, container, cards, h3, i, txtValue;
+        var input, filter, container, cards, button, i, txtValue;
         input = document.getElementById('myInput');
         filter = input.value.toUpperCase();
         container = document.getElementsByClassName("container")[0];
-        cards = container.getElementsByClassName('dog-breed');
+        cards = container.getElementsByClassName('card');
         
         // Loop through all card elements, and hide those who don't match the search query
         for (i = 0; i < cards.length; i++) {
-            h3 = cards[i].getElementsByTagName("h3")[0];
-            txtValue = h3.textContent || h3.innerText;
+            button = cards[i].getElementsByTagName("button")[0];
+            txtValue = button.textContent || button.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 cards[i].style.display = "";
             } else {
