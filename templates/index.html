@@ -17,6 +17,7 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            flex-direction:column;
             align-items: center;
             min-height: 100vh;
         }
@@ -26,7 +27,7 @@
             gap: 20px;
             padding: 20px;
             max-width: 1200px;
-            width: 100%;
+            width: 150%;
         }
         .card {
             background-color: #FFF3E0;
@@ -50,7 +51,7 @@
             border-radius: 10px;
             margin-bottom: 15px;
         }
-        .card button {
+                .card button {
             background-color: #F67280;
             color: #fff;
             border: none;
@@ -58,8 +59,16 @@
             border-radius: 25px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, font-size 0.3s;
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflowing text */
+            text-overflow: ellipsis; /* Add "..." for overflowing text */
+            max-width: 150px; /* Set a maximum width */
         }
+.card button:hover {
+    background-color: #C06C84;
+}
+
         .card button:hover {
             background-color: #C06C84;
         }
@@ -73,8 +82,44 @@
             border-radius: 5px;
             overflow: hidden;
         }
-
-
+    
+        .pagination {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #6d2e46;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .pagination a:hover {
+            background-color: #C06C84;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .pagination .current {
+            padding: 10px 15px;
+            background-color: #C06C84;
+            color: #fff;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        @media only screen and (max-width: 480px) {
+            .container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 10px;
+            }
+            .pagination a, .pagination .current {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
         
     </style>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -85,12 +130,13 @@
         {% for item in page_obj %}
         <div class="card">
             <!-- Dog Image -->
-            <img class="dog-image" src="{{ item.image.url }}" alt="{{ item.Breed }} image" onerror="this.src='/static/images/default-dog.jpg'">
+            <img class="dog-image" src="{{ item.image.url }}">
             
             <!-- Breed Button Linking to Details -->
-            <a href="{% url 'dog_detail' breed_name=item.Breed %}">
-                <button class="favorite styled" type="button">{{ item.Breed }}</button>
+            <a href="{% url 'dog_detail' breed_name=item.breed %}">
+                <button class="favorite styled" type="button">{{ item.breed }}</button>
             </a>
+            
         </div>
         {% empty %}
             <p>No dogs found.</p>
@@ -99,7 +145,7 @@
 
     <!-- Pagination Links -->
     <div class="pagination">
-        <span class="step-links">
+       
             <!-- Previous Link -->
             {% if page_obj.has_previous %}
                 <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -114,11 +160,27 @@
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}">Next</a>
             {% endif %}
-        </span>
+       
     </div>
 </body>
 
 </html>
+
+
+<script>
+    document.querySelectorAll('.card button').forEach(button => {
+        const maxLength = 15; // Set your max character length here
+        if (button.textContent.length > maxLength) {
+            button.style.fontSize = '0.8rem'; // Reduce font size for longer text
+        }
+    });
+</script>
+
+
+
+
+
+
 
 
 

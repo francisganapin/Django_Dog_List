@@ -40,7 +40,14 @@
               <!-- ok francis tandaan mo lagi mo gamitin yung url if gusto mo i link yung item -->
             <li><a href='{% url 'dog_views' %}'>Homepage</a></li>
             <li><a href='{% url 'about_views' %}'>About</a></li>
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search breed of Dogs">
+            li><a href='{% url 'about_views' %}'>Adoption</a></li>
+
+        <form action="{% url 'dog_views' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="dog_name" placeholder="Search breed of Dogs">
+            <button type="submit">Search</button>
+        </form> 
+
         </ul>
     </nav>
 

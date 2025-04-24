@@ -1,46 +1,49 @@
-#i have db.sqlite3 i want to get the data of dictionary.csv 
-# and transfer that to my homepage_dictionary 
-# table each row, row of my table was word.part_of_speech and description
-
-
 import csv
+import os
+import django
 
-# Initialize a list to hold the data from CSV
-data = []
+# Set up Django environment
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dog_breed.settings")
+django.setup()
 
-# Assuming dictionary.csv is in the same directory as this script
-csv_file = 'dog_breeds.csv'
+from mypage.models import Dog, CharacterTrait, HealthProblem
+
+# Load data from CSV
+csv_file = "dog_breeds.csv"
 
 with open(csv_file, newline='', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
+    
     for row in reader:
-        # Assuming your CSV has columns word, part_of_speech, description
-        Breed = row['Breed']
-        Country_of_Origin = row['Country_of_Origin']
-        Fur_Color = row['Fur_Color']
-        Height_inches = row['Height_inches']
-        Color_of_Eyes = row['Color_of_Eyes']
-        Longevity_yrs = row['Longevity_yrs']
-        Character_Traits = row['Character_Traits']
-        Common_Health_Problems = row['Common_Health_Problems']
+        breed = row['Breed']
+        country_of_origin = row['Country_of_Origin']
+        fur_color = row['Fur_Color']
+        height_inches = row['Height_inches']
+        color_of_eyes = row['Color_of_Eyes']
+        longevity_yrs = row['Longevity_yrs']
         image = row['image']
+        
+        # Create Dog entry
+        dog, created = Dog.objects.get_or_create(
+            breed=breed,
+            defaults={
+                "country_of_origin": country_of_origin,
+                "fur_color": fur_color,
+                "height_inches": height_inches,
+                "color_of_eyes": color_of_eyes,
+                "longevity_yrs": longevity_yrs,
+                "image": image,
+            },
+        )
 
-        # Append data as tuples
-        data.append((Breed, Country_of_Origin, Fur_Color,Height_inches,Color_of_Eyes,Longevity_yrs,Character_Traits,Common_Health_Problems,image))
+        # Add Character Traits (split by comma if multiple traits are in one column)
+        character_traits = row['Character_Traits'].split(",") if row['Character_Traits'] else []
+        for trait in character_traits:
+            CharacterTrait.objects.get_or_create(dog=dog, trait=trait.strip())
 
-import sqlite3
+        # Add Health Problems (split by comma if multiple issues are in one column)
+        health_problems = row['Common_Health_Problems'].split(",") if row['Common_Health_Problems'] else []
+        for problem in health_problems:
+            HealthProblem.objects.get_or_create(dog=dog, health_problem=problem.strip())
 
-# Connect to SQLite database
-conn = sqlite3.connect('db.sqlite3')
-cursor = conn.cursor()
-
-
-# Iterate through data and insert into homepage_dictionary table
-for row in data:
-    Breed, Country_of_Origin, Fur_Color,Height_inches,Color_of_Eyes,Longevity_yrs,Character_Traits,Common_Health_Problems,image = row
-    # Assuming your table schema is (word TEXT, part_of_speech TEXT, description TEXT)
-    cursor.execute("INSERT INTO mypage_dog (Breed, Country_of_Origin, Fur_Color,Height_inches,Color_of_Eyes,Longevity_yrs,Character_Traits,Common_Health_Problems,image) VALUES (?,?,?,?,?,?,?,?,?)", (Breed, Country_of_Origin, Fur_Color,Height_inches,Color_of_Eyes,Longevity_yrs,Character_Traits,Common_Health_Problems,image))
-
-# Commit changes and close connection
-conn.commit()
-conn.close()
+print("Data import completed successfully!")

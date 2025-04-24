@@ -1,66 +1,164 @@
 {% extends "base.html" %}
 
-{% block title %}Classes{% endblock %}
+{% block title %}{{ dog.Breed }} information{% endblock %}
 
 {% block content %}
 
 
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #F8B195;
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* Ensure full height */
+        display: flex;
+        justify-content: center; /* Horizontally center */
+        align-items: center; /* Vertically center */
+    }
+    .container {
+        padding-top: 50px; /* Adjust this value as needed */
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ dog.Breed }} Information</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .color_container {
-            font-family: Arial, sans-serif;
-            background-color: #F8B195;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #333;
+    }
+    .image-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .image-container img {
+   
+        max-width: 10%;
+        border-radius: 8px;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .column {
+        width: 48%;
+    }
+    .column h2 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .column p, .column ul {
+        font-size: 1rem;
+        color: #555;
+    }
+    .column ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .column ul li {
+        padding: 5px 0;
+    }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .table, .table th, .table td {
+        border: 1px solid  #F8B195;
+    }
+    .table th, .table td {
+        padding: 10px;
+        text-align: left;
+    }
+    .table th {
+        background-color:  #F8B195;
+    }
+</style>
 </head>
+<body>
 
-<body class="color_container flex items-center justify-center min-h-screen">
-    <figure class="md:flex bg-white rounded-xl shadow-lg p-8 md:p-0 dark:bg-gray-800 max-w-4xl">
-        <img class="w-32 h-32 md:w-48 md:h-auto md:rounded-l-xl rounded-full mx-auto md:mx-0" src="{{ dog.image.url }}" alt="{{ dog.Breed }}" width="384" height="512">
-        <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
-            <blockquote>
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">History</h2>
-                <p class="text-lg font-medium text-gray-600 dark:text-gray-300 mt-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </blockquote>
-            <figcaption class="font-medium mt-4 space-y-2">
-                <div class="text-sky-500 dark:text-sky-400">
-                    <p><strong>Dog Breed:</strong> {{ dog.Breed }}</p>
-                </div>
-                <div class="text-gray-700 dark:text-gray-400">
-                    <p><strong>Fur Color:</strong> {{ dog.Fur_Color }}</p>
-                </div>
-                <div class="text-gray-700 dark:text-gray-400">
-                    <p><strong>Height (inches):</strong> {{ dog.Height_inches }}</p>
-                </div>
-                <div class="text-gray-700 dark:text-gray-400">
-                    <p><strong>Eye Color:</strong> {{ dog.Color_of_Eyes }}</p>
-                </div>
-                <div class="text-gray-700 dark:text-gray-400">
-                    <p><strong>Longevity (years):</strong> {{ dog.Longevity_yrs }}</p>
-                </div>
-                <div class="text-gray-700 dark:text-gray-400">
-                    <p><strong>Character Traits:</strong> {{ dog.Character_Traits }}</p>
-                </div>
-                <div class="text-gray-700 dark:text-gray-400">
-                    <p><strong>Common Health Problems:</strong> {{ dog.Common_Health_Problems }}</p>
-                </div>
-            </figcaption>
+<div class="container">
+    <h1>{{dog.breed}}</h1>
+    
+    {% for item in dog %}
+    <div class="image-container">
+  
+        <img src="{{ item.image.url }}" alt="{{ dog.breed }}">
+       
+    </div>
+     {% endfor %}
+    
+
+    <div class="image-container">
+       Country Origin: {{dog.Country_of_Origin}}
+    </div>
+
+    <div class="row">
+        <!-- Left Column: History -->
+        <div class="column">
+            <h2>History</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
-    </figure>
+
+        <!-- Right Column: Characteristics -->
+        <div class="column">
+            <h2>Characteristics</h2>
+            <ul>
+                <li><strong>Fur Color:</strong>{{dog.fur_color}}</li>
+                <li><strong>Height (inches):</strong>{{dog.height_inches}}</li>
+                <li><strong>Eye Color:</strong>{{dog.color_of_eyes}}</li>
+                <li><strong>Longevity (years):</strong>{{dog.longevity_yrs}}</li>
+                <li><strong>Character Traits:</strong> Loyal, intelligent, protective, confident, trainable</li>
+            </ul>
+        </div>
+    </div>
+
+
+    {% if dog %}
+        {% for d in dog %}
+            <a> {{ d.health_problems.all|join:", " }}</a>
+        {% endfor %}
+    {% else %}
+        <p>No dogs found</p>
+    {% endif %}
+
+
+
+    <h2>Common Health Problems</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Health Issue</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Hip Dysplasia</td>
+                <td>A genetic condition where the hip joint doesn't develop properly.</td>
+            </tr>
+            <tr>
+                <td>Elbow Dysplasia</td>
+                <td>A developmental issue affecting the elbow joints.</td>
+            </tr>
+            <tr>
+                <td>Pancreatitis</td>
+                <td>Inflammation of the pancreas, causing digestive issues.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
 </body>
-</html>
+
 
 
 {%endblock%}
